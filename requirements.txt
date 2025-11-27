@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+python-multipart
+piano_transcription_inference
+torch
+numpy
+scipy
+librosa
+soundfile
+pydantic-settings
