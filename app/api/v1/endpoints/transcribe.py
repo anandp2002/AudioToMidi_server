@@ -1,3 +1,4 @@
+import time
 import os
 import shutil
 import tempfile
@@ -27,13 +28,18 @@ async def transcribe_audio(file: UploadFile = File(...)):
 
     try:
         # Use the service to transcribe
+        start_time = time.time()
         audio_service.transcribe(tmp_input_path, tmp_output_path)
+        end_time = time.time()
+        duration = end_time - start_time
+        print(f"Conversion time: {duration} seconds")
 
         return FileResponse(
             tmp_output_path, 
             media_type="audio/midi", 
             filename=f"{os.path.splitext(file.filename)[0]}.mid",
-            background=BackgroundTask(cleanup_files, tmp_input_path, tmp_output_path)
+            background=BackgroundTask(cleanup_files, tmp_input_path, tmp_output_path),
+            headers={"X-Conversion-Time": str(duration)}
         )
 
     except Exception as e:

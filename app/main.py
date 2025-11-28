@@ -14,6 +14,7 @@ if settings.BACKEND_CORS_ORIGINS:
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
+        expose_headers=["X-Conversion-Time"],
     )
 
 app.include_router(transcribe.router, prefix=settings.API_V1_STR, tags=["transcription"])

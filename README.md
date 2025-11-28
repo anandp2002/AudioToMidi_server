@@ -12,7 +12,7 @@ This is the FastAPI backend for the MP3 to MIDI converter application. It uses a
 
 1.  **Navigate to the server directory:**
     ```bash
-    cd server
+    cd AudioToMidi_server
     ```
 
 2.  **Create a virtual environment:**
